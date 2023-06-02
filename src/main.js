@@ -9,11 +9,11 @@ import { initCommand, processTextToChat, INITIAL_SESSION } from './logic.js'
 
 let telegram_token = ''
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'development') {
   telegram_token = config.get('TELEGRAM_TOKEN')
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'production') {
   telegram_token = process.env.TELEGRAM_TOKEN
 }
 

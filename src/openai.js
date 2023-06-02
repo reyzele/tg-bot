@@ -50,11 +50,11 @@ class OpenAI {
 
 let open_key = ''
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'development') {
   open_key = config.get('OPENAI_KEY')
 }
 
-if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV === 'production') {
   open_key = process.env.OPENAI_KEY
 }
 

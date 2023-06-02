@@ -10,7 +10,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 class TextConverter {
   async getToken() {
-    const key = '';
+    let key = '';
 
     if (process.env.NODE_ENV === 'development') {
       key = JSON.parse(
