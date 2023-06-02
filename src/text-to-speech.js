@@ -10,20 +10,17 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 class TextConverter {
   async getToken() {
-    const key = JSON.parse(
-      readFileSync(resolve(__dirname, '../config/telegram-bot-key.json')),
-      'utf-8'
-    )
+    
 
     const token = jwt.sign(
       {
-        iss: key.client_email,
+        iss: process.env.TGBOT_CLIENT_EMAIL,
         scope: 'https://www.googleapis.com/auth/cloud-platform',
         aud: 'https://www.googleapis.com/oauth2/v4/token',
         exp: Math.floor(Date.now() / 1000) + 60 * 60,
         iat: Math.floor(Date.now() / 1000),
       },
-      key.private_key,
+      process.env.TGBOT_PRIVATE_KEY,
       { algorithm: 'RS256' }
     )
 
