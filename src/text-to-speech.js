@@ -13,6 +13,9 @@ class TextConverter {
     const iss = process.env.TGBOT_CLIENT_EMAIL
     const private_key = process.env.TGBOT_PRIVATE_KEY
 
+    console.log('iss===>', iss)
+    console.log('private_key==>', private_key)
+
     const token = jwt.sign(
       {
         iss,
