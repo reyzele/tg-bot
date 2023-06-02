@@ -20,7 +20,7 @@ class TextConverter {
     }
 
     if (process.env.NODE_ENV === 'production') {
-        key = JSON.parse(readFileSync(process.env.TG_BOT_KEY), 'utf-8')
+        key = JSON.parse(process.env.TG_BOT_KEY, 'utf-8')
     }
 
     const token = jwt.sign(
