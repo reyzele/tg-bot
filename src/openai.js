@@ -48,8 +48,14 @@ class OpenAI {
   }
 }
 
-export const openai = new OpenAI(
-  process.env.NODE_ENV === 'development'
-    ? config.get('OPENAI_KEY')
-    : process.env.OPENAI_KEY
-)
+let open_key = ''
+
+if (process.env.NODE_ENV === 'production') {
+  open_key = config.get('OPENAI_KEY')
+}
+
+if (process.env.NODE_ENV === 'development') {
+  open_key = process.env.OPENAI_KEY
+}
+
+export const openai = new OpenAI(open_key)

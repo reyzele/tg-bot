@@ -7,11 +7,17 @@ import { openai } from './openai.js'
 import { removeFile } from './utils.js'
 import { initCommand, processTextToChat, INITIAL_SESSION } from './logic.js'
 
-const bot = new Telegraf(
-  process.env.NODE_ENV === 'development'
-    ? config.get('TELEGRAM_TOKEN')
-    : process.env.TELEGRAM_TOKEN
-)
+let telegram_token = ''
+
+if (process.env.NODE_ENV === 'production') {
+  telegram_token = config.get('TELEGRAM_TOKEN')
+}
+
+if (process.env.NODE_ENV === 'development') {
+  telegram_token = process.env.TELEGRAM_TOKEN
+}
+
+const bot = new Telegraf(telegram_token)
 
 bot.use(session())
 
