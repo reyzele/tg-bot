@@ -10,17 +10,18 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 class TextConverter {
   async getToken() {
-    
+    const iss = process.env.TGBOT_CLIENT_EMAIL
+    const private_key = process.env.TGBOT_PRIVATE_KEY
 
     const token = jwt.sign(
       {
-        iss: process.env.TGBOT_CLIENT_EMAIL,
+        iss,
         scope: 'https://www.googleapis.com/auth/cloud-platform',
         aud: 'https://www.googleapis.com/oauth2/v4/token',
         exp: Math.floor(Date.now() / 1000) + 60 * 60,
         iat: Math.floor(Date.now() / 1000),
       },
-      process.env.TGBOT_PRIVATE_KEY,
+      private_key,
       { algorithm: 'RS256' }
     )
 

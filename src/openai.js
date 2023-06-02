@@ -24,7 +24,7 @@ class OpenAI {
         messages,
       })
       const message = response.data.choices[0].message
-      const language  = langdetect.detect(message.content)
+      const language = langdetect.detect(message.content)
 
       return {
         message,
@@ -48,4 +48,8 @@ class OpenAI {
   }
 }
 
-export const openai = new OpenAI(process.env.OPENAI_KEY)
+export const openai = new OpenAI(
+  process.env.NODE_ENV === 'development'
+    ? config.get('OPENAI_KEY')
+    : process.env.OPENAI_KEY
+)
