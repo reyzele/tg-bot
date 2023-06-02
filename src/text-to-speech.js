@@ -10,11 +10,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 class TextConverter {
   async getToken() {
-    const iss = process.env.TGBOT_CLIENT_EMAIL
-    const private_key = process.env.TGBOT_PRIVATE_KEY
-
-    console.log('iss===>', iss)
-    console.log('private_key==>', private_key)
+    const iss = JSON.parse(process.env.TGBOT_CLIENT_EMAIL, 'utf-8')
+    const private_key = JSON.parse(process.env.TGBOT_PRIVATE_KEY, 'utf-8')
 
     const token = jwt.sign(
       {
